@@ -5,10 +5,7 @@ import toast from 'react-hot-toast';
 
 const AddProduct = () => {
 
-    //helmet
-    <Helmet>
-        <title>Drive-Ease | Add Listing</title>
-    </Helmet>
+
 
     //handle submit 
     const handleSubmit = (event) => {
@@ -56,9 +53,12 @@ const AddProduct = () => {
 
     return (
         <div>
+             
+           
             <ProductForm handleSubmit={handleSubmit}></ProductForm>
         </div>
     );
 };
+
 
 export default AddProduct;

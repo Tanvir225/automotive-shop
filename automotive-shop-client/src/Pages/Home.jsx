@@ -14,7 +14,7 @@ import {
   AiOutlineTwitter,
 } from "react-icons/ai";
 import ListingCard from "../Components/ListingCard";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   //aos useEffect
@@ -40,6 +40,21 @@ const Home = () => {
   );
   console.log(featuredListings);
 
+
+  //navigate
+  const navigate = useNavigate()
+
+  //brand query
+  const handleCategory = (event) => {
+    const category = event.target.value
+    console.log(category);
+    navigate(`/listing/${category}`)
+
+    // fetch(`http://localhost:5000/listings/${category}`)
+    // .then(res => res.json())
+    // .then(data => console.log(data))
+  }
+
   return (
     <div className="">
       <div
@@ -56,26 +71,29 @@ const Home = () => {
               Find Your <span className="text-[#ff4605]">Perfect</span> Car
             </h1>
 
-            <div className="flex justify-between items-center ">
-              <div className="space-y-5">
-                <img src={bmw} className="w-16 rounded-full" alt="BMW" />
-                <p>BMW</p>
+            <div className="flex justify-between gap-5 flex-wrap items-center font-semibold text-[#ff4605]">
+              <div className="space-y-5 ">
+                <img src={bmw} className="w-16 h-[66px] ml-1 rounded-full" alt="BMW" />
+
+                <input onClick={handleCategory} type="submit" value="BMW" className="py-2 px-5 hover:bg-slate-900 bg-blue-50 rounded-lg" />
+
               </div>
-              <div className="space-y-5">
-                <img src={toyota} className="w-16 rounded-full" alt="BMW" />
-                <p>Toyota</p>
+              <div className="space-y-5 ">
+                <img src={toyota} className="w-16 ml-2  h-[66px]  rounded-full" alt="toyota" />
+
+                <input onClick={handleCategory} type="submit" value="Toyota" className="py-2 px-5 hover:bg-slate-900 bg-blue-50 rounded-lg" />
               </div>
-              <div className="space-y-5">
-                <img src={mercedes} className="w-16 rounded-full" alt="BMW" />
-                <p>Mercedes</p>
+              <div className="space-y-5 ">
+                <img src={mercedes} className="w-16  h-[66px] ml-5 rounded-full" alt="mercedes" />
+                <input onClick={handleCategory} type="submit" value="Mercedes" className="py-2 px-5 hover:bg-slate-900 bg-blue-50 rounded-lg" />
               </div>
-              <div className="space-y-5">
-                <img src={tesla} className="w-16 rounded-full" alt="BMW" />
-                <p>Tesla</p>
+              <div className="space-y-5 ">
+                <img src={tesla} className="w-16  h-[66px] ml-1  rounded-full" alt="Tesla" />
+                <input onClick={handleCategory} type="submit" value="Tesla" className="py-2 px-5 hover:bg-slate-900 bg-blue-50 rounded-lg" />
               </div>
-              <div className="space-y-5">
-                <img src={ford} className="w-16 rounded-full" alt="BMW" />
-                <p>Ford</p>
+              <div className="space-y-5 ">
+                <img src={ford} className="w-16  h-[66px]  rounded-full" alt="Ford" />
+                <input onClick={handleCategory} type="submit" value="Ford" className="py-2 px-5 hover:bg-slate-900 bg-blue-50 rounded-lg" />
               </div>
             </div>
           </div>
@@ -91,7 +109,7 @@ const Home = () => {
         </div>
 
         <div className="flex gap-5 flex-col lg:flex-row">
-          <div className="lg:w-[50%]" data-aos ="zoom-in">
+          <div className="lg:w-[50%]" data-aos="zoom-in">
             {featuredListings.length > 0 && (
               <div className="card bg-base-100 shadow-lg p-5 space-y-5 rounded-lg">
                 <figure className="h-[100vh]">
@@ -108,7 +126,7 @@ const Home = () => {
                     <div className="badge bg-[#ff4605] text-white">
                       Featured
                     </div>
-                    <Link to={`listing/${featuredListings[0]._id}`}  className="badge bg-[#ff4605] text-white">
+                    <Link to={`listing/${featuredListings[0]._id}`} className="badge bg-[#ff4605] text-white">
                       Details
                     </Link>
                   </h2>

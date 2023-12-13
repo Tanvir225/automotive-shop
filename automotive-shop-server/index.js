@@ -44,6 +44,21 @@ async function run() {
       res.send(cursor)
     })
 
+    //get category wise listing
+    app.get("/listings",async(req,res)=>{
+      try {
+        const brandQuery = req.query.rating
+        console.log(brandQuery);
+      //   const query = brandQuery ? { brand: brandQuery } : {};
+      //   const listings = await listingCollection.find(query);
+      //   res.json(listings);
+       }
+       catch (error) {
+        console.error('Error:', error.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    })
+
 
     //get a single listing
     app.get("/listings/:id",async(req,res)=>{

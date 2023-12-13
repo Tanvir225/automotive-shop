@@ -1,35 +1,59 @@
 import { useContext } from "react";
 import {
-    AiOutlineGoogle
-  } from "react-icons/ai";
-import { AuthContext } from "../AuthProvider/Authprovider";
+  AiOutlineGoogle
+} from "react-icons/ai";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import loginImg from "../assets/login.jpg"
 
 const Login = () => {
 
-    //navigate
-    const navigate = useNavigate()
 
-    //get googleLogin from a context
-    const {handleGoogleLogin} = useContext(AuthContext)
+  //navigate
+  const navigate = useNavigate()
+
+  //location for navigate
+  const location = useLocation()
+  console.log(location);
+
+  //get googleLogin and password from a context
+  const { handleGoogleLogin, logUser } = useContext(AuthContext)
 
 
-    //handleLogin
+  //login functionality
+  const handleRegister = (event) => {
+    event.preventDefault()
+    const form = event.target
+    const email = form.email.value
+    const password = form.password.value
+    console.log(email, password);
 
-    const handleLogin = (media)=>{
-        media()
-        .then(res =>{
-            const user = res.user
-            console.log(user);
-            toast.success('login successfull')
-            navigate("/")
-        })
-        .catch(e =>{
-            toast.error(e.message.slice(10,e.message.length))
-        })
-    }
+    logUser(email, password)
+      .then(res => {
+        const user = res.user
+        console.log(user);
+        toast.success('user login successfully')
+        form.reset()
+        navigate(location?.state ? location.state : "/")
+      })
+      .catch(e => {
+        toast.error(e.message.slice(10, e.message.length))
+      })
+  }
+  //handleLogin
+  const handleLogin = (media) => {
+    media()
+      .then(res => {
+        const user = res.user
+        console.log(user);
+        toast.success('login successful')
+        navigate(location?.state ? location.state : "/")
+      })
+      .catch(e => {
+        toast.error(e.message.slice(10, e.message.length))
+      })
+  }
 
 
 
@@ -37,11 +61,11 @@ const Login = () => {
     <div className="hero min-h-screen ">
       <div className="hero-content flex-col lg:flex-row-reverse  w-full">
         <img
-          src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
+          src={loginImg}
           className="hidden md:block lg:w-1/2 h-[80vh] rounded-lg shadow-2xl"
         />
         <div className="w-full">
-          <form className="card-body">
+          <form onSubmit={handleRegister} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -76,11 +100,12 @@ const Login = () => {
             </div>
           </form>
 
+          <p className="text-right font-semibold px-7 italic">Don't have any account <Link to={"/register"} className="text-[#ff4605] underline">register</Link ></p>
 
           <h2 className="font-bold text-2xl divider px-7 ">OR</h2>
-            <div className="px-7 py-5">
-                <button onClick={()=> handleLogin(handleGoogleLogin)} className="btn btn-outline bg-[#ff4605] text-white w-full"><AiOutlineGoogle></AiOutlineGoogle>Google</button>
-            </div>
+          <div className="px-7 py-5">
+            <button onClick={() => handleLogin(handleGoogleLogin)} className="btn btn-outline bg-[#ff4605] text-white w-full"><AiOutlineGoogle></AiOutlineGoogle>Google</button>
+          </div>
         </div>
       </div>
     </div>
