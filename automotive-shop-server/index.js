@@ -1,5 +1,5 @@
 const express = require('express');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const cors = require('cors');
 const app = express()
 const port = process.env.PORT || 5000
@@ -42,6 +42,16 @@ async function run() {
     app.get('/listings',async(req,res)=>{
       const cursor = await listingCollection.find().toArray()
       res.send(cursor)
+    })
+
+
+    //get a single listing
+    app.get("/listings/:id",async(req,res)=>{
+        const listingId = req.params.id
+        console.log('single listing api hitting',listingId);
+        const query = {_id : new ObjectId(listingId)}
+        const result = await listingCollection.findOne(query)
+        res.send(result)
     })
 
     //post a listing

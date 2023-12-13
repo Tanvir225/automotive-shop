@@ -1,8 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../public/logo.png"
 import "./Navbar/Navbar.css"
+import { useContext } from "react";
+import { AuthContext } from "../AuthProvider/Authprovider";
 
 const Navbar = () => {
+
+    //get user from context
+    const {user,logOut} = useContext(AuthContext)
+
     const links = <>
         <NavLink to={"/"}>Home</NavLink>
         <NavLink to={"/add-product"} className='border p-3 rounded-lg border-[#ff4605]'>Add Listing</NavLink>

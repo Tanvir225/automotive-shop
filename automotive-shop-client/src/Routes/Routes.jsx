@@ -3,6 +3,7 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import AddProduct from "./AddProduct";
+import ListingDetails from "../Pages/ListingDetails";
 
 
 const myCreatedRoute = createBrowserRouter([
@@ -18,6 +19,11 @@ const myCreatedRoute = createBrowserRouter([
             {
                 path:"/add-product",
                 element:<AddProduct></AddProduct>
+            },
+            {
+                path:"/listing/:id",
+                element:<ListingDetails></ListingDetails>,
+                loader: ({params})=> fetch(`http://localhost:5000/listings/${params.id}`)
             },
             {
                 path:"/login",
