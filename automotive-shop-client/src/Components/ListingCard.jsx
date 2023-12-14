@@ -27,7 +27,7 @@ const ListingCard = ({ listing }) => {
         <h2 className="card-title border-b-2">
           {name}
           <div className="badge bg-[#ff4605] text-white">Featured</div>
-          <Link to={`listing/${_id}`} className="badge bg-[#ff4605] text-white">Details</Link>
+          <Link to={`listings/${_id}`} className="badge bg-[#ff4605] text-white">Details</Link>
         </h2>
 
         <div className="flex justify-between items-center text-lg font-semibold">

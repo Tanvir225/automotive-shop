@@ -4,12 +4,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 
-
-
-
 const ListingDetails = () => {
   //get single listing from useloaderData
   const listing = useLoaderData();
+
 
   //aos useEffect
   useEffect(() => {

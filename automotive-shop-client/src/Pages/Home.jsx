@@ -123,7 +123,7 @@ const Home = () => {
                     <div className="badge bg-[#ff4605] text-white">
                       Featured
                     </div>
-                    <Link to={`listing/${featuredListings[0]._id}`} className="badge bg-[#ff4605] text-white">
+                    <Link to={`listings/${featuredListings[0]._id}`} className="badge bg-[#ff4605] text-white">
                       Details
                     </Link>
                   </h2>
