@@ -46,13 +46,10 @@ const Home = () => {
 
   //brand query
   const handleCategory = (event) => {
-    const category = event.target.value
-    console.log(category);
-    navigate(`/listing/${category}`)
+    const brand = event.target.value
+    console.log(brand);
+    navigate(`/listing/${brand}`)
 
-    // fetch(`http://localhost:5000/listings/${category}`)
-    // .then(res => res.json())
-    // .then(data => console.log(data))
   }
 
   return (
