@@ -7,7 +7,8 @@ import AddProduct from "../Pages/AddProduct";
 import PrivateRoute from "./PrivateRoute";
 import Cart from "../Pages/Cart";
 import Register from "../Pages/Register";
-import CategoryList from "../Pages/CategoryList";
+import BrandListing from "../Pages/BrandListing";
+
 
 
 const myCreatedRoute = createBrowserRouter([
@@ -29,13 +30,14 @@ const myCreatedRoute = createBrowserRouter([
                 element: <PrivateRoute><Cart></Cart></PrivateRoute>
             },
             {
-                path: "/listings/:id",
+                path: "/:id",
                 element: <PrivateRoute><ListingDetails></ListingDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/listings/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/listings/${params.id}/`)
             },
             {
-                path: "/listing/:category",
-                element: <CategoryList></CategoryList>,
+                path: "/listing/:brand",
+                element: <BrandListing></BrandListing>,
+                loader : ({params}) => fetch(`http://localhost:5000/listings?brand=${params.brand}`)
                 
             },
             {

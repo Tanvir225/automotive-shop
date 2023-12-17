@@ -15,6 +15,7 @@ import {
 } from "react-icons/ai";
 import ListingCard from "../Components/ListingCard";
 import { Link, useNavigate } from "react-router-dom";
+import Swipper from "../Components/Swipper/Swipper";
 
 const Home = () => {
   //aos useEffect
@@ -25,21 +26,16 @@ const Home = () => {
   }, []);
 
   //state for manage listings
-  const [listings, setListings] = useState([]);
+  const [featuredListings, setfeaturedListings] = useState([]);
 
   //useEffect
   useEffect(() => {
     fetch("http://localhost:5000/listings")
       .then((res) => res.json())
-      .then((data) => setListings(data));
+      .then((data) => setfeaturedListings(data));
   }, []);
 
-  //filter listing for get featured
-  const featuredListings = listings.filter(
-    (listing) => listing.featured === true
-  );
-  console.log(featuredListings);
-
+ 
 
   //navigate
   const navigate = useNavigate()
@@ -49,6 +45,7 @@ const Home = () => {
     const brand = event.target.value
     console.log(brand);
     navigate(`/listing/${brand}`)
+
 
   }
 
@@ -123,7 +120,7 @@ const Home = () => {
                     <div className="badge bg-[#ff4605] text-white">
                       Featured
                     </div>
-                    <Link to={`listings/${featuredListings[0]._id}`} className="badge bg-[#ff4605] text-white">
+                    <Link to={`/${featuredListings[0]._id}`} className="badge bg-[#ff4605] text-white">
                       Details
                     </Link>
                   </h2>
@@ -173,6 +170,10 @@ const Home = () => {
             View 29 New
           </button>
         </div>
+      </div>
+
+      <div>
+        <Swipper></Swipper>
       </div>
     </div>
   );
