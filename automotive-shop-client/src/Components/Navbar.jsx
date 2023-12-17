@@ -30,7 +30,7 @@ const Navbar = () => {
         }
     </>
     return (
-        <div className="bg-[#1a1f26]  text-white  shadow-lg py-5 px-10 flex justify-between items-center">
+        <div className="bg-[#1a1f26] hidden  text-white  shadow-lg py-5 px-10 md:flex justify-between items-center">
 
             <Link to={"/"}>
                 <div className="flex  items-center gap-3">

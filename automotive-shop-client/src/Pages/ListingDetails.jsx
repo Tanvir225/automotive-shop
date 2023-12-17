@@ -2,11 +2,36 @@ import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import toast from "react-hot-toast";
+import Swipper from "../Components/Swipper/Swipper";
 
 
 const ListingDetails = () => {
   //get single listing from useloaderData
   const listing = useLoaderData();
+
+  //handle add to cart
+  const handleAddCart = () => {
+    //fetch for post data
+    fetch('http://localhost:5000/cart', {
+      method: "POST",
+      headers: {
+        'content-type': "application/json"
+      },
+      body: JSON.stringify(listing)
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.insertedId) {
+          toast.success('product added to cart')
+        }
+
+      })
+
+  }
+
+
 
 
   //aos useEffect
@@ -17,7 +42,8 @@ const ListingDetails = () => {
   }, []);
 
   return (
-    <div className="container mx-auto mt-16 flex gap-5 flex-col-reverse lg:flex-row p-2">
+    <>
+      <div className="container mx-auto mt-16 flex gap-5 flex-col-reverse lg:flex-row px-5">
       <div className="lg:w-[60%]  space-y-6">
         <img
           src={listing.image}
@@ -28,7 +54,7 @@ const ListingDetails = () => {
         <p className="lg:w-[80%]">{listing.details}</p>
       </div>
 
-      <div className="lg:w-[40%] flex flex-col justify-between bg-blue-100 shadow-md rounded-lg p-10 ">
+      <div className="lg:w-[40%]  flex flex-col justify-between bg-blue-100 shadow-md rounded-lg p-10 ">
         <div className="space-y-3" data-aos="zoom-out">
           <h2 className="text-gray-600 text-2xl font-bold divider">
             Listing Name :<span className="text-[#ff4605]">{listing.name}</span>
@@ -58,12 +84,16 @@ const ListingDetails = () => {
             Listing Price :
             <span className="text-[#ff4605]">{listing.price} $</span>
           </h2>
-          <button className="btn btn-outline bg-[#ff4605] text-white w-full">
+          <button id="addToCartBtn" onClick={handleAddCart} className="btn btn-outline bg-[#ff4605] text-white w-full">
             Add to cart
           </button>
         </div>
       </div>
     </div>
+     <div className="mt-20">
+        <Swipper></Swipper>
+      </div> 
+    </>
   );
 };
 

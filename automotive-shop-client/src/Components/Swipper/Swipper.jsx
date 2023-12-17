@@ -18,13 +18,14 @@ const Swipper = () => {
   const [popular, setPopular] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/popular")
+    fetch("http://localhost:5000/listings/popular")
       .then((res) => res.json())
       .then((data) => setPopular(data));
   }, []);
 
   return (
     <div>
+      <h2 className="text-4xl font-bold px-5">Popular <span className="text-[#ff4605]">Makes</span></h2>
       <Swiper
         effect={"coverflow"}
         grabCursor={true}

@@ -32,10 +32,15 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
-    //connect to database
+    //create a listings collection to database
     const listingCollection = client
       .db("automotiveDB")
       .collection("listingCollection");
+
+    //create a cart collection to database
+    const cartCollection = client
+      .db('automotiveDB')
+      .collection('cartCollection')
 
     //get all listings
     app.get("/listings", async (req, res) => {
@@ -57,16 +62,32 @@ async function run() {
 
 
     //featured Listing
-    app.get("/featured",async(req,res)=>{
-      const result = await (await listingCollection.find({featured : true}).limit(5).toArray())
+    app.get("/listings/featured", async (req, res) => {
+      const result = await listingCollection.find({ featured: true }).limit(5).toArray()
       res.send(result)
     })
 
     //popular listing
-    app.get("/popular",async(req,res)=>{
-      const result = await listingCollection.find({type : "Liftback"}).limit(10).toArray()
+    app.get("/listings/popular", async (req, res) => {
+      const result = await listingCollection.find({ type: "Liftback" }).limit(10).toArray()
       res.send(result)
     })
+
+    //get all card
+    app.get("/cart", async (req, res) => {
+      const result = await cartCollection.find().toArray()
+      res.send(result)
+    })
+
+
+   //get a single cart api
+   app.get("/cart/:id",async(req,res)=>{
+    const itemId = req.params.id
+    console.log(itemId);
+    const query = {_id : itemId}
+    const result = await cartCollection.findOne(query)
+    res.send(result)
+   })
 
     //get a single listing
     app.get("/listings/:id", async (req, res) => {
@@ -84,6 +105,25 @@ async function run() {
       const result = await listingCollection.insertOne(listing);
       res.send(result);
     });
+
+
+
+
+    //post cart
+    app.post("/cart", async (req, res) => {
+      const cartItem = req.body
+      const result = await cartCollection.insertOne(cartItem);
+      res.send(result)
+    })
+
+    //delete a single listing from cart
+    app.delete("/cart/:id",async(req,res)=>{
+      const itemId = req.params.id
+      console.log('delete api hitting',itemId);
+      const query = {_id : itemId}
+      const result = await cartCollection.deleteOne(query)
+      res.send(result)
+    })
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

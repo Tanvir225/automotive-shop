@@ -16,6 +16,8 @@ import {
 import ListingCard from "../Components/ListingCard";
 import { Link, useNavigate } from "react-router-dom";
 import Swipper from "../Components/Swipper/Swipper";
+import ChooseUs from "../Components/ChooseUs";
+import Team from "../Components/Team";
 
 const Home = () => {
   //aos useEffect
@@ -97,7 +99,7 @@ const Home = () => {
       {/* featured section */}
       <div className="container mx-auto px-2 lg:p-0 mt-16">
         <div className="mb-10 divider">
-          <h2 className="text-5xl font-bold  text-[#ff4605]">
+          <h2 className="text-4xl font-bold  text-[#ff4605]">
             Featured Listing
           </h2>
         </div>
@@ -172,8 +174,18 @@ const Home = () => {
         </div>
       </div>
 
-      <div>
+      <div className="mt-16 container mx-auto">
         <Swipper></Swipper>
+      </div>
+
+      <div className="mt-20">
+        <h2 className="text-4xl font-bold text-center">Why Choose Us!</h2>
+        <ChooseUs></ChooseUs>
+      </div>
+
+      <div className="mt-20">
+      <h2 className="text-4xl font-bold text-center">Our Team!</h2>
+        <Team></Team>
       </div>
     </div>
   );
