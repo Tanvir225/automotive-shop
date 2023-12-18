@@ -12,7 +12,7 @@ const ListingCard = ({ listing }) => {
   }, []);
 
   //destructure
-  const { _id,image, name, brand, type, price, rating } = listing || {};
+  const { _id,image, name, brand, type, price, featured  } = listing || {};
 
   return (
     <div
@@ -26,7 +26,7 @@ const ListingCard = ({ listing }) => {
       <div className="card-body">
         <h2 className="card-title border-b-2">
           {name}
-          <div className="badge bg-[#ff4605] text-white">Featured</div>
+          <div className="badge bg-[#ff4605] text-white">{featured ? "Featured" :""}</div>
           <Link to={`/${_id}`} className="badge bg-[#ff4605] text-white">Details</Link>
         </h2>
 

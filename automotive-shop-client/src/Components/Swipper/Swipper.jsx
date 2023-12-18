@@ -24,7 +24,7 @@ const Swipper = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container mx-auto">
       <h2 className="text-4xl font-bold px-5">Popular <span className="text-[#ff4605]">Makes</span></h2>
       <Swiper
         effect={"coverflow"}

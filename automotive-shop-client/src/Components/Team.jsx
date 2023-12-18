@@ -4,7 +4,7 @@ const Team = () => {
     return (
         <div className="grid mt-16 grid-cols-1 gap-10 justify-center container mx-auto md:grid-cols-2 lg:grid-cols-3 px-5 ">
 
-            <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border h-[60vh] rounded-xl">
+            <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border h-fit rounded-xl">
                 <div className="relative mt-5  overflow-hidden text-gray-700 bg-white shadow-lg bg-clip-border rounded-full w-24 mx-auto">
                     <img src="https://docs.material-tailwind.com/img/team-3.jpg" alt="profile-picture" className='w-full h-full' />
                 </div>
@@ -33,7 +33,7 @@ const Team = () => {
                 </div>
             </div>
 
-            <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border h-[60vh] rounded-xl">
+            <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border h-fit rounded-xl">
                 <div className="relative mt-5  overflow-hidden text-gray-700 bg-white shadow-lg bg-clip-border rounded-full w-24 mx-auto">
                     <img src="https://docs.material-tailwind.com/img/team-3.jpg" alt="profile-picture"  className='w-full h-full'/>
                 </div>
@@ -62,7 +62,7 @@ const Team = () => {
                 </div>
             </div>
 
-            <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border h-[60vh] rounded-xl">
+            <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border h-fit rounded-xl">
                 <div className="relative mt-5  overflow-hidden text-gray-700 bg-white shadow-lg bg-clip-border rounded-full w-24 mx-auto">
                     <img src="https://docs.material-tailwind.com/img/team-3.jpg" alt="profile-picture"  className='w-full h-full'/>
                 </div>

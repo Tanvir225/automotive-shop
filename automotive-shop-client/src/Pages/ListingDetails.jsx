@@ -10,6 +10,17 @@ const ListingDetails = () => {
   //get single listing from useloaderData
   const listing = useLoaderData();
 
+  //make a object for cart
+  const cartItem = {
+    image : listing.image,
+    name: listing.name,
+    brand : listing.brand,
+    type: listing.type,
+    price : listing.price
+    
+  }
+
+
   //handle add to cart
   const handleAddCart = () => {
     //fetch for post data
@@ -18,7 +29,7 @@ const ListingDetails = () => {
       headers: {
         'content-type': "application/json"
       },
-      body: JSON.stringify(listing)
+      body: JSON.stringify(cartItem)
     })
       .then(res => res.json())
       .then(data => {

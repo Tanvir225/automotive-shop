@@ -64,6 +64,7 @@ const Cart = () => {
                                 <div className="card-body">
                                     <h2 className="card-title">{listing.name}</h2>
                                     <p>{listing.brand} || {listing.type}</p>
+                                    <p className=' font-bold'>{listing.price}$</p>
                                     <div className="card-actions justify-end">
                                         <button onClick={() => handleDelete(listing._id)} className="btn btn-outline bg-red-600 text-white text-lg"><AiOutlineDelete></AiOutlineDelete></button>
                                     </div>

@@ -168,9 +168,9 @@ const Home = () => {
         </div>
 
         <div>
-          <button className="btn bg-[#ff4605] text-white px-16">
+          <Link to={"/listings"} className="btn bg-[#ff4605] text-white px-16">
             View 29 New
-          </button>
+          </Link>
         </div>
       </div>
 

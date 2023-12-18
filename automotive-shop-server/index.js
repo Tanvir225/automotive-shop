@@ -44,6 +44,7 @@ async function run() {
 
     //get all listings
     app.get("/listings", async (req, res) => {
+
       //filter data by brand query
       const brandQuery = req.query.brand;
       console.log(`Request for brand : ${brandQuery}`);
@@ -59,6 +60,9 @@ async function run() {
 
       res.send(result);
     });
+
+
+
 
 
     //featured Listing
@@ -84,7 +88,7 @@ async function run() {
    app.get("/cart/:id",async(req,res)=>{
     const itemId = req.params.id
     console.log(itemId);
-    const query = {_id : itemId}
+    const query = {_id : new ObjectId(itemId)}
     const result = await cartCollection.findOne(query)
     res.send(result)
    })
@@ -120,7 +124,7 @@ async function run() {
     app.delete("/cart/:id",async(req,res)=>{
       const itemId = req.params.id
       console.log('delete api hitting',itemId);
-      const query = {_id : itemId}
+      const query = {_id : new ObjectId(itemId)}
       const result = await cartCollection.deleteOne(query)
       res.send(result)
     })

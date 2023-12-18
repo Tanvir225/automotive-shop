@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import Cart from "../Pages/Cart";
 import Register from "../Pages/Register";
 import BrandListing from "../Pages/BrandListing";
+import AllListings from "../Pages/AllListings";
 
 
 
@@ -38,6 +39,12 @@ const myCreatedRoute = createBrowserRouter([
                 path: "/listing/:brand",
                 element: <BrandListing></BrandListing>,
                 loader : ({params}) => fetch(`http://localhost:5000/listings?brand=${params.brand}`)
+                
+            },
+            {
+                path: "/listings",
+                element: <AllListings></AllListings>,
+                loader : () => fetch("http://localhost:5000/listings")
                 
             },
             {
